@@ -35,6 +35,8 @@ group :development, :test do
   gem "capybara"
   gem "rspec-rails", "~> 2.0"
   gem 'spork-rails'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 gem "devise"
