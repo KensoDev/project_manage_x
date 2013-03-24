@@ -1,0 +1,13 @@
+= simple_form_for @account, url: create_account_url do |account_form|
+  = account_form.input :subdomain
+  = account_form.input :name
+  = account_form.fields_for :user do |user_form|
+    = user_form.input :first_name
+    = user_form.input :last_name
+    = user_form.input :email
+    = user_form.input :password, :as => :password
+    = user_form.input :password_confirmation, :as => :password
+  = account_form.submit "Open Account"
+
+
+"avit@tikalk.com"

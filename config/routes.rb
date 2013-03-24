@@ -2,6 +2,9 @@ PrjectManageX::Application.routes.draw do
   devise_for :users
   root :to => 'home#index'
 
+  match '/account/new' => "account#new"
+  match '/account/create' => "account#create", as: :create_account
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
