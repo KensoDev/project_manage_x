@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   #
   has_one :account
+
+  def has_role?(role)
+    false
+  end
 end
