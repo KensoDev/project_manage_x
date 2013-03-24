@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def current_account
+    @account ||= Account.where(subdomain: request.subdomain).first
+  end
+
   def verify_subdomain_ownership
      unless current_user.account.subdomain == request.subdomain
         redirect_to :root
