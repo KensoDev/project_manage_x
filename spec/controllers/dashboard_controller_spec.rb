@@ -4,8 +4,11 @@ describe DashboardController do
   render_views
   include Devise::TestHelpers
 
-  let(:account) { FactoryGirl.create(:account) }
+  let(:account) { FactoryGirl.create(:account, subdomain: "tikal") }
   let(:user) { account.user }
+
+  let(:other_account) { FactoryGirl.create(:account, subdomain: "foobar") }
+  let(:other_user) { other_account.user }
 
   before(:each) do
     @request.host = "tikal.manage.local"
@@ -26,6 +29,15 @@ describe DashboardController do
       it "should be successful" do
         get :index
         response.should be_success
+      end
+    end
+
+    context "When logged in to the wrong account" do
+      before(:each) { sign_in(other_user) }
+
+      it "should redirect me to the root" do
+        get :index
+        response.should be_redirect
       end
     end
   end

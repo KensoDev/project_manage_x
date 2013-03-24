@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def verify_subdomain_ownership
+     unless current_user.account.subdomain == request.subdomain
+        redirect_to :root
+     end
+  end
+
   def verify_logged_in_user
     unless current_user
       flash[:error] = "You are not logged in!"
