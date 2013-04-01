@@ -2,3 +2,8 @@ ul
   - @projects.each do |project|
     li
       = project.name
+      ul
+        - project.comments.each do |comment|
+          li
+            = comment.subject
+
